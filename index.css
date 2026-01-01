@@ -1,0 +1,211 @@
+/* Өнгөний хувьсагчууд */
+:root {
+    --primary: #3b82f6;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --border: #e2e8f0;
+    --input-bg: #f1f5f9;
+}
+
+/* Шөнийн горимын өнгөнүүд */
+body.dark-mode {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --border: #334155;
+    --input-bg: #0f172a;
+}
+
+body {
+    font-family: -apple-system, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    display: flex;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Layout */
+.sidebar {
+    width: 300px;
+    background: var(--card);
+    padding: 25px;
+    border-right: 1px solid var(--border);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: transform 0.3s ease, margin-left 0.3s ease, background 0.3s;
+}
+
+body.sidebar-hidden .sidebar {
+    margin-left: -300px;
+}
+
+.main {
+    flex: 1;
+    padding: 40px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Form elements */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 30px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text);
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.file-drop {
+    border: 2px dashed var(--border);
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    background: var(--card);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: #334155;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 2px;
+}
+
+body.dark-mode .badge {
+    background: #334155;
+    color: #60a5fa;
+}
+
+.price {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 1.2rem;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Floating Buttons Group */
+.floating-controls {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+}
+
+.fab {
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+.fab.mode-toggle {
+    background: #6366f1;
+}
+
+/* Шөнийн горимын товчны өнгө */
+
+.no-print {
+    display: block;
+}
+
+@media print {
+
+    .no-print,
+    .floating-controls {
+        display: none !important;
+    }
+
+    .sidebar {
+        display: none !important;
+    }
+
+    body.sidebar-hidden .sidebar {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        z-index: 999;
+    }
+}
