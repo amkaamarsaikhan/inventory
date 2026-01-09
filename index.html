@@ -3,56 +3,41 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>Агуулах</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Inventory Admin</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" href="images/inventory.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
 </head>
 
 <body>
 
-    <aside class="sidebar no-print" id="sidebar">
-        <div class="logo">📦 InvManager</div>
-        <h4 style="margin-top: 0;">Шинэ бараа бүртгэх</h4>
+    <header class="header">
+        <button onclick="toggleSidebar()">☰ Цэс</button>
+        <input id="searchInput" placeholder="Бараа хайх..." oninput="searchItems()">
+        <div class="total">Нийт: <span id="total">₮0</span></div>
+        <button onclick="toggleDark()">🌙</button>
+    </header>
 
-        <input type="text" id="itemName" placeholder="Барааны нэр">
-        <input type="number" id="itemPrice" placeholder="Нэгж үнэ ($)">
-        <textarea id="itemColorName" placeholder="Өнгө:Тоо (ж.нь: Улаан:10, Хар:5)"></textarea>
+    <div class="overlay" onclick="toggleSidebar()"></div>
 
-        <div class="file-drop" onclick="document.getElementById('itemImage').click()">
-            <span id="fileText">📸 Зураг сонгох</span>
-            <input type="file" id="itemImage" accept="image/*" style="display:none">
-        </div>
-        <div id="preview"></div>
+    <aside class="sidebar">
+        <h2>📦 Бараа нэмэх / засах</h2>
 
-        <button id="addBtn" class="btn-add">💾 Хадгалах</button>
-        <button onclick="window.print()"
-            style="width: 100%; margin-top: 10px; background: none; border: 1px solid var(--border); color: var(--text); padding: 10px; border-radius: 8px; cursor: pointer;">📄
-            PDF Тайлан</button>
+        <input id="itemName" placeholder="Барааны нэр">
+        <input id="itemPrice" type="number" placeholder="Нэгж үнэ">
+
+        <div id="variantInputs"></div>
+        <button class="btn-outline" onclick="addVariantInput()">➕ Өнгө нэмэх</button>
+
+        <button class="btn-primary" onclick="saveItem()">💾 Хадгалах</button>
+        <button class="btn-outline" onclick="printReport()">🧾 Тайлан / PDF</button>
+
     </aside>
 
-    <main class="main">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;"
-            class="no-print">
-            <input type="text" id="searchInput" placeholder="🔍 Хайх..." oninput="searchItems()"
-                style="width: 300px; margin-bottom: 0;">
-            <div
-                style="background: var(--primary); color: white; padding: 10px 20px; border-radius: 10px; font-weight: 700;">
-                Нийт: <span id="total">$0</span></div>
-        </div>
-        <div id="inventoryGrid" class="grid"></div>
-    </main>
+    <main class="grid" id="inventoryGrid"></main>
 
-    <div class="floating-controls no-print">
-        <button class="fab mode-toggle" onclick="toggleDarkMode()" title="Night/Day Mode">
-            <span id="modeIcon">🌙</span>
-        </button>
-        <button class="fab" onclick="toggleSidebar()" title="Toggle Sidebar">
-            <span id="toggleIcon">◀</span>
-        </button>
-    </div>
-
-    <script src="index.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
